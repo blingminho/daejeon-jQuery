@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>샘플1</title>
+		<script>
+			window.onload = function(){
+//				var hlist = document.getElementsByTagName('h1');
+//				hlist[0].style.background = 'yellow';
+            	document.getElementsByTagName('h1')[0].style.background = 'yellow';
+//				document.getElementsByTagName('h1').style.background = 'yellow';
+				// 복수개의 요소를 선택할 수 없다
+				
+//				var hello = document.getElementsByClassName('hello');
+//				hello[0].style.color = 'red';
+				document.getElementsByClassName('hello')[0].style.color = 'red';
+				
+//				var txt = document.getElementById('txt');
+//				txt.style.border = '2px solid green';
+				document.getElementById('txt').style.border = '2px solid green';
+				
+				
+			}
+			
+		
+		</script>
+	</head>
+	
+	<body>
+		<h1> Hello jQuery !! </h1>
+		<h2 class='hello'> 안녕하세요. jQuery입니다 </h2>
+		<br>
+		이름 : <input id="txt" type="text"><br>
+		비밀번호 : <input type="password"><br>
+	
+	</body>
+</html>

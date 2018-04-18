@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('.pp').click(function(){
+			$(this).css('font-size', '+=3px');
+		});
+		
+		$('#clone').click(function(){
+			$('#p1').clone().appendTo('body');
+		});
+		
+		$('#clonetrue').click(function(){
+			$('#p2').clone(true).appendTo('body');
+		});
+		
+	})
+</script>
+</head>
+<body>
+	<p class="pp" id="p1">진진자라</p>
+	<p class="pp" id="p2">지리지리자</p>
+	
+	<button id="clone" type="button">clone(복사)</button>
+	<button id="clonetrue" type="button">clone(true)(이벤트도 복사)</button>
+	
+</body>
+</html>

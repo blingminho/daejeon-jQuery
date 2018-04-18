@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script>
+	$(function() {
+		//document.write("hidden문단개수: "+ $('body :hidden').length);  // body와  hidden
+		//document.write("visible문단개수: "+ $('body :visible').length);
+		
+		/* 
+		$('body :hidden').each(function(){
+			   alert( "태그 이름 : " +    this.tagName  + " 내용: " +   $(this).text());
+		})
+	    */
+	    
+	    res = "";
+	    $('body  :visible').each(function(){
+	    	res +=  "태그 이름 : " +    this.tagName  + ",  내용: " +   $(this).text() + "\n";
+	    })
+	    
+	    alert(res);
+	    
+	})
+</script>
+</head>
+<body>
+	<p>보이는 문단</p>
+	<p style="visibility: hidden;">숨겨진 문단</p>
+	<p style="display:none;"> 자리를 차지 하지 못한 문단</p>
+	<p style="opacity: 0;">투명한 문단</p>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

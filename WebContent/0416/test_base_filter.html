@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('li:first, li:last').css('background', 'yellow');
+		$('li:eq(5)').css('background', 'red');
+		$('li:lt(4)').css('font-size', '20px').css('font-weight', 'bold');
+	})
+</script>
+</head>
+<body>
+	<ul>
+		<li>one</li>
+		<li>two</li>
+		<li>three</li>
+		<li>four</li>
+		<li>five</li>
+		<li>six</li>
+		<li>seven</li>
+		<li>eight</li>
+		<li>nine</li>
+	</ul>
+</body>
+</html>

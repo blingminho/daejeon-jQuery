@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script>
+  $(function(){ 
+     $('td:first-child').css('background', '#ff8200');
+     $('td:nth-child(2)').css('background', '#ffd700');
+     $('td:last-child').css('background', '#ff9614');
+     
+    // $('tr:first-child')
+    // $('table:eq(1) tr:first-child td')
+    $('table:eq(1) tr:eq(0) td').css('background', 'black')
+                                .css('color', 'white');
+  })
+</script>
+<style>
+  table{
+      border-collapse: collapse;
+   }
+  
+   td {
+      width :  200px;
+      height : 50px;
+      text-align : center;
+    }
+
+</style>
+</head>
+<body>
+  <table  border=1>
+    <tr>
+       <td>이름</td>
+       <td>주소</td>
+       <td>전화번호</td>
+    </tr>
+    
+    <tr>
+       <td>홍길동</td>
+       <td>대전</td>
+       <td>010-5677-0987</td>
+    </tr>
+    
+    
+    <tr>
+       <td>진달래</td>
+       <td>대전</td>
+       <td>010-234-5678</td>
+    </tr>
+    
+    
+    <tr>
+       <td>개나리</td>
+       <td>서울</td>
+       <td>010-3456-1234</td>
+    </tr>
+    
+    <tr>
+       <td>수선화</td>
+       <td>부산</td>
+       <td>010-7788-9090</td>
+    </tr>
+    
+    
+  </table>
+  
+  <br><br>
+  
+  
+   <table  border=1>
+    <tr>
+       <td>이름</td>
+       <td>주소</td>
+       <td>전화번호</td>
+    </tr>
+    
+    <tr>
+       <td>홍길동</td>
+       <td>대전</td>
+       <td>010-5677-0987</td>
+    </tr>
+    
+    
+    <tr>
+       <td>진달래</td>
+       <td>대전</td>
+       <td>010-234-5678</td>
+    </tr>
+    
+    
+    <tr>
+       <td>개나리</td>
+       <td>서울</td>
+       <td>010-3456-1234</td>
+    </tr>
+    
+    <tr>
+       <td>수선화</td>
+       <td>부산</td>
+       <td>010-7788-9090</td>
+    </tr>
+    
+    
+  </table>
+  
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

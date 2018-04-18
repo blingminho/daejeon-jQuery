@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// alert($('body').html());
+		// alert($('body').text());
+		$('#html').on('click', function(){
+			// body태그안에 모든 태그를 포함한 문자 가져오기
+			// alert($('body').html());
+			$('#htmlres').html($('body').html());
+			$('#htmlres').html("<h1>안녕하세요</h1>");
+		})
+		
+		
+		$('#text').on('click', function(){
+			// body태그안에 모든 문자만 가져오기 - 태그없이
+			// alert($('body').text());
+			$('#textres').text($('body').html());
+			$('#textres').text("<h1>안녕하세요</h1>");
+		})
+		
+		$('#phtml').on('click', function(){
+			// alert($('p').html());
+			
+			a = $('p').html();
+			$('#phtmlres').html(a);
+		})
+		
+		$('#ptext').on('click', function(){
+			// alert($('p').text());
+			a = $('p').html();// 첫번째 꺼 하나만 가져오기
+			$('#ptextres').text(a);
+			
+			// 여러개의 p를 대상으로 가져오려면 반복루프를 실행
+			res = "";
+			/* 
+			$.each($('p'), function(i){// i는 필요한 경우 사용 (0부터 시작한다)
+				res += i + "번째 " + $(this).html() + "\n";
+			})
+			*/
+			$('p').each(function(i){
+				res += i + "번째 " + $(this).html() + "\n";
+			}) 
+			 
+			 
+			alert(res);
+			
+			// b = "<a href=''>홍길동</a>";
+			// $(b).appendTo($('#ptextres'));
+		})
+		
+	})
+</script>
+<style type="text/css">
+	div{
+		width : 50%;
+		height : auto;
+		border : 1px solid blue;
+	}
+</style>
+</head>
+<body>
+	<button id="html">body선택 html메서드</button>
+	<button id="text">body선택 text메서드</button>
+	
+	<button id="phtml">p선택 html메서드</button>
+	<button id="ptext">p선택 text메서드</button>
+	<br><br>
+	
+	<h1>html()와 text() 메서드</h1>
+	<p>1<a href="http://www.naver.com">홍길동</a></p>
+	<p>2<a href="http://www.daum.net">개나리</a></p>
+	<p>3<a href="http://www.w3schools.com">진달래</a></p>
+	
+	<div id="htmlres"></div>
+	<div id="textres"></div>
+	
+	<div id="phtmlres"></div>
+	<div id="ptextres"></div>
+	
+</body>
+</html>

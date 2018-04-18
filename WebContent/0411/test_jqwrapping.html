@@ -1,0 +1,28 @@
+<html>
+
+<head>
+	<title>샘플1</title>
+	<meta charset="UTF-8">
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script>
+		$(function() {
+			// DOM 객체 선언 및 초기화
+			hlist = document.getElementsByTagName('h1')[0];
+			
+//			hlist.style.color = 'red';
+			
+			// 오류 : hlist는 DOM객체인데 css라는 jquery메서드를 호출
+//			hlist.css('color', 'blue');
+			
+			// DOM 객체를 $()를 이용해서 랩핑하면 jquery메서드를 호출 할 수 있다
+			$(hlist).css('color', 'blue');
+			
+		})
+	</script>
+</head>
+
+<body>
+	<h1>따뜻한 봄날 오후 ~~ 졸린가요 ????</h1>
+</body>
+	
+</html>

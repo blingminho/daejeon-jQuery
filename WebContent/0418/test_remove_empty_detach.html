@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('#emp').click(function(){
+			$('div').empty();
+		});
+		
+		$('#rem').click(function(){
+			$('div').remove();
+		});
+		
+		$('.pp').click(function(){
+			$(this).css('font-size', '+=3px');
+		});
+		
+		
+		$('#det').click(function(){
+			var a = $('#p1').detach();//p1이 삭제된다. 이벤트는 삭제되지 않는다
+			
+			$(a).appendTo('body');//p1을 body에 추가. 추가후에 이벤트 확인
+		});
+		
+		//p2가 삭제된다
+		$('#erem').click(function(){
+			var a = $('#p2').remove();//p2가 삭제된다. 이벤트도 함께 삭제된다
+			
+			$('body').append(a);//p2를 body에 추가
+		});
+		
+	})
+</script>
+<style type="text/css">
+div {
+	width: 100%;
+	height: 80px;
+	background: pink;
+}
+</style>
+</head>
+<body>
+	<div>
+		div text
+		<p>무궁화 꽃이 피었습니다</p>
+	</div>
+	<br>
+	<div>
+		div text2
+		<p>무궁화 꽃이 피었습니다2</p>
+	</div>
+	
+	<br>
+
+	<button id="emp" type="button">empty(비우기)</button>
+	<button id="rem" type="button">remove(지우기)</button>
+	<br>
+	<hr>
+	
+	<p class="pp" id="p1">석양이 진다</p>
+	<p class="pp" id="p2">진진자라 지리지리자</p>
+	<button id="det" type="button">detach(이벤트 무삭제)</button>
+	<button id="erem" type="button">remove(이벤트 삭제)</button>
+	
+</body>
+</html>

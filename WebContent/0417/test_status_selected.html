@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script>
+  $(function(){ 
+	  
+	 
+	  $('#spring').on('change', function(){
+		  res = "";
+		  $.each($('#spring  option:selected'),  function(){
+			    res +=   $(this).val() + "\n";
+		  })
+		  
+		//  alert(res);
+     })
+     //////////////////////////////////////////////
+     $('#spring').change(test);
+	  
+  	function  test(){
+		
+		  res = "";
+		  $.each($('#spring  option:selected'),  function(){
+			    res +=   $(this).val() + "\n";
+		  })
+		  
+		  alert(res);
+	}  
+     
+      
+  })
+</script>
+</head>
+<body>
+  <form>
+	봄소식 : 
+	<select name="spring" id="spring"  multiple size="6" >
+		<option  >개나리</option>
+		<option selected>진달래</option>
+		<option>민들레</option>
+		<option selected>벚꽃</option>
+		<option>목련</option>
+		<option>철쭉</option>
+	</select>
+  </form>
+  
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		
+		var flag = 0;//0: 기본값, 1: 해제 버튼만 활성화
+
+		function setButton(flag) {
+			if (flag == 0) {
+				$('#un').prop('disabled', true);
+				$('#wrap').prop('disabled', false);
+				$('#all').prop('disabled', false);
+			} else if (flag == 1) {
+				$('#un').prop('disabled', false);
+				$('#wrap').prop('disabled', true);
+				$('#all').prop('disabled', true);
+			}
+		}		
+		
+		$("#wrap").click(function() {
+			flag = 1;
+			$("p").wrap("<div/>");
+			setButton(flag);
+		});
+		
+		$("#all").click(function() {
+			flag = 1;
+			$("p").wrapAll("<div/>");
+			setButton(flag);
+		});
+		
+		$("#un").click(function() {
+			flag = 0;
+			$("p").unwrap();
+			setButton(flag);
+		});
+		
+		
+		
+	})
+</script>
+<style>
+div {
+	width: 50%;
+	height: 70px;
+	background: yellow;
+}
+</style>
+</head>
+<body>
+	<p>This is a paragraph.</p>
+	<p>This is another paragraph.</p>
+	<button type="button" id="wrap">감싸기</button>
+	<button type="button" id="all">전체 감싸기</button>
+	<button type="button" id="un">해제</button>
+</body>
+</html>

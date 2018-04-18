@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		//p엘리먼트중 class가 intro인거
+// 		$('p.intro').css('background', 'yellow');//아래와 같은 의미임
+		$('p').filter('.intro').css('background', 'yellow');
+		
+		//class가 pp인거중 jQuery를 포함하는거
+// 		$('.pp:contains(jQuery)')
+		$('.pp').filter(':contains(jQuery)').css('border', '2px solid red');
+		
+		//홀수번째 p앨리먼트 중 Html이 포함되어 있는거
+// 		$('p:odd:contains(Html)').css('border', '2px solid blue');
+		$('p').filter(':odd').filter(':contains(Html)').css('border', '2px dotted blue');
+		
+		//class가 intro가 아닌것
+// 		$('p:not(.intro)').css('font-size', '1.5em');
+		$('p').not('.intro').css('font-size', '1.5em');
+		
+		//짝수가 아닌것
+// 		$('p:not(even)')
+		$('p').not(':even').css('color', 'magenta');
+		
+		//클래스가 intro가 아니고 아이디가 outtro가 아닌것 선택
+// 		$('p:not(.intro, #outtro)').css('background', 'lime');
+		$('p').not('.intro, #outtro').css('background', 'lime');
+		
+	})
+</script>
+</head>
+<body>
+	<h1>** 환영합니다 **</h1>
+	<p class="pp">내이름은 jQuery 입니다 .</p>
+	<p class="intro">나는 자바 스크립트와 살고 있습니다 .</p>
+	<p class="intro">나는 자바 스크립트를 사랑합니다 .</p>
+	<p class="pp">내 친구는 Html, Ajax 입니다 .</p>
+	<br>
+	<p>My name is 홍길동.</p>
+	<p class="intro">My name is 개나리.</p>
+	<p class="intro">My name is 진달래.</p>
+	<p id="outtro">My name is 무궁화 </p>
+	
+</body>
+</html>

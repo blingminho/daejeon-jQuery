@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//전체 - 모든 input, button, textarea
+		$(':input').css('background', 'pink')
+					.css('border', '2px solid lime');
+		
+		//$('input[type=text], input[type=password]')
+		$(':text, :password').css('border', '2px solid blue');
+		
+		//$('input[type=image], input[type=file]')
+		$(':image, :file').css('border', '2px solid red');
+		
+		//$('input[type=submit]')
+		$(':submit').css('background', 'green');
+		//$('input[type=reset]')
+		$(':reset').css('background', 'yellow');
+		
+		$('input[type=button], button[type=button]').css('background', 'cyan');
+	})
+</script>
+</head>
+<body>
+	<form action="test.jsp" method="post">
+		Text : <input type="text" /><br> 
+		Password : <input type="password" /><br>
+		<br> Radio : 
+		<input type="radio" name="radioGroup" id="radioA" value="A" /> A 
+		<input type="radio" name="radioGroup" id="radioB" value="B" /> B<br>
+		<br> Checkbox : 
+		<input type="checkbox" name="checkboxes" id="checkbox1" value="1" /> 1 
+		<input type="checkbox" name="checkboxes" id="checkbox2" value="2" /> 2<br><br> 
+		Textarea : <br>
+		<textarea rows="15" cols="50" id="myTextarea" id="myTextarea"></textarea>
+		<br><br>
+		Image : <input type="image" src="../images/image.1.jpg"><br><br>
+		Img태그 <br> <img src="../images/image.3.jpg" width="100px" height="100px"><br><br>
+		File : <input type="file"><br><br>
+		Buttons :
+		<button type="button" id="normalButton">Normal</button>
+		<button type="submit" id="submitButton">Submit</button>
+		<button type="reset" id="resetButton">Reset</button>
+		<button id="btn">버튼</button>
+		<br><br>
+		<input type="button" value="일반버튼">
+		<input type="submit" value="전송버튼">
+		<input type="reset" value="초기화버튼">
+		<br><br>
+	</form>
+</body>
+</html>

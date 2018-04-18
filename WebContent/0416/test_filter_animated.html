@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('#run').on('click', function(){
+// 			$('div').css('background', 'green');
+			$('div:animated').css('background', 'green');
+		})
+		
+		//함수 정의 slow: 0.6초, fast: 0.2초
+		function animated() {
+			$('#ani').slideToggle('slow', animated);
+// 			$('#ani').slideToggle(400, animated());//0.4초
+		}
+		
+		//함수 호출
+		animated();
+		
+		
+	})
+</script>
+<style type="text/css">
+div {
+	float: left;
+	width: 100px;
+	height: 150px;
+	background: yellow;
+	margin: 10px;
+}
+</style>
+</head>
+<body>
+	<button id="run">실행</button>
+	<br>
+
+	<div></div>
+	<div id="ani"></div>
+	<div></div>
+
+</body>
+</html>

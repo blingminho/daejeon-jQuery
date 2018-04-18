@@ -1,0 +1,56 @@
+<html>
+
+<head>
+	<title>샘플1</title>
+	<meta charset="UTF-8">
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script>
+		$(function() {
+			// 전체 p를 선택
+			$('p').css('font-size', '20px');
+			
+			// 컨텍스트 지정
+			$('p', document.forms[1]).css('color', 'red');
+			
+			$('div').on('click', function(){
+				r = parseInt(Math.random()*256);
+				g = parseInt(Math.random()*256);
+				b = parseInt(Math.random()*256);
+				
+				// this : 클릭하는 div, 클릭하는 div내에서 p 
+				$('p', this).css('background', 'rgb(' + r + ',' + g + ',' + b + ')');
+				// $('p', this).css('background', 'yellow');
+				
+				// p와 div를 동시에
+				$('p, div').css('border', '3px solid red');
+				
+				// 모든 div안에 있는 모든 p
+				// $('div p').css('background', 'yellow');
+				
+			})
+			
+		})
+
+	</script>
+</head>
+
+<body>
+	<form>
+		<div>
+			<p>무궁화 꽃이 피었습니다1</p>
+		</div>
+	</form>
+	
+	<form>
+		<div>
+			<p>무궁화 꽃이 피었습니다2</p>
+		</div>
+	</form>
+	
+	<form>
+		<p>무궁화 꽃이 피었습니다3</p>
+	</form>
+	
+</body>
+
+</html>

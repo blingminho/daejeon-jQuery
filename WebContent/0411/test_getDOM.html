@@ -1,0 +1,33 @@
+<html>
+
+<head>
+	<title>샘플1</title>
+	<meta charset="UTF-8">
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script>
+		$(function() {
+			hh = $('h1');
+			hh.css('color', 'blue');
+			
+			$('h1').css('color', 'blue');
+			
+			$('h1:eq(0)').css('color', 'red');
+			
+			// jQuery객체를 DOM객체로 얻는다
+			hget = $('h1').get(1);// hget = $('h1')[1];
+//			hget.css('color', 'green');// => 오류
+			hget.style.color = 'green';
+			
+			$(hget).css('color', 'red');
+			
+		})
+	</script>
+</head>
+
+<body>
+	<h1>무궁화 꽃이 피었습니다</h1>
+	<h1>무궁화 꽃이 피었습니다</h1>
+	<h1>무궁화 꽃이 피었습니다</h1>
+</body>
+	
+</html>

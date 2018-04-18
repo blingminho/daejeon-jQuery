@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		
+		var a = "";
+		
+		$('#start').click(function() {
+			clearInterval(a);
+			
+			$(this).prop('disabled', true);
+			$('#reverse').prop('disabled', true);
+			$('#stop').prop('disabled', false);
+			
+			a = setInterval(function() {
+				$('img:first').appendTo($('div'));
+			}, 1000);
+			
+		});
+		
+		$('#stop').click(function() {
+			$(this).prop('disabled', true);
+			$('#start').prop('disabled', false);
+			$('#reverse').prop('disabled', false);
+			
+			clearInterval(a);
+			
+		});
+		
+		$('#reverse').click(function() {
+			$(this).prop('disabled', true);
+			$('#start').prop('disabled', true);
+			$('#stop').prop('disabled', false);
+			
+			clearInterval(a);
+			
+			a = setInterval(function () {
+				$('img:last').prependTo($('div'));
+			}, 1000);
+			
+			
+		});
+		
+	})
+</script>
+</head>
+<body>
+
+	<div>
+		<img alt="" src="../images/image.1.jpg">
+		<img alt="" src="../images/image.2.jpg">
+		<img alt="" src="../images/image.3.jpg">
+		<img alt="" src="../images/image.4.jpg">
+		<img alt="" src="../images/image.5.jpg">
+		<img alt="" src="../images/image.6.jpg">
+		<img alt="" src="../images/image.7.jpg">
+	</div>
+	<br><br>
+	
+	<button id="start" type="button">시작</button>
+	<button id="stop" type="button" disabled>끝</button>
+	<button id="reverse" type="button">거꾸로</button>
+	
+</body>
+</html>

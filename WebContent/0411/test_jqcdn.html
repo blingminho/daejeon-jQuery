@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>
+			
+		</title>
+		<meta charset="UTF-8">
+		<script src="../js/jquery-3.3.1.min.js"></script>
+		<script>
+			$(function(){
+				$('*').css('background', 'lightgray');
+				
+				$('h1').css('background', 'yellow');
+				// 복수개의 요소에 css적용 가능
+				$('h1:eq(0)').css('background', 'orange');
+				
+				
+				$('.hello').css('color', 'blue');
+				
+				$('#txt').css('border', '5px dotted red');
+				
+				
+				
+			})
+			
+			
+		</script>
+	</head>
+	<body>
+		<h1> Hello jQuery !! </h1>
+		<h1> Hello h1 ~~</h1>
+		<h2 class='hello'> 안녕하세요. jQuery입니다 </h2>
+		<br>
+		이름 : <input id="txt" type="text"><br>
+		비밀번호 : <input type="password"><br>
+	
+	</body>
+</html>

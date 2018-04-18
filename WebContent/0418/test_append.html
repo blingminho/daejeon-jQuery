@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+// 		var vimg = $('<img src="" width="100px" height="100px">');
+		var vimg = $('<img>', {
+			'src': '../images/image.1.jpg',
+			'width': '100px',
+			'height': '100px'
+		});
+
+// 		해당 요소의 내부에 추가
+		$(vimg).appendTo($('p'));// 모든 p태그 내부에 추가
+// 		$(vimg).prependTo($('p'));// 모든 p태그 내부에 추가
+// 		$('p').append($(vimg));// 모든 p태그 내부에 추가
+// 		$('p').prepend($(vimg));// 모든 p태그 내부에 추가
+		
+
+// 		해당 요소의 외부에 추가
+// 		$(vimg).insertAfter($('p'));// 모든 p태그 외부에 추가
+// 		$(vimg).insertBefore($('p'));// 모든 p태그 외부에 추가
+// 		$('p').after($(vimg));// 모든 p태그 외부에 추가
+// 		$('p').before($(vimg));// 모든 p태그 외부에 추가
+		
+		
+		
+	})
+</script>
+</head>
+<body>
+	
+	<p>Hello~!</p>
+	<p>Hello~2</p>
+</body>
+</html>

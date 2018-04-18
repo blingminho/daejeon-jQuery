@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// 자바스크립트의 배열
+		imgarr  = [
+		           "Chrysanthemum.jpg",
+		           "Desert.jpg",
+		           "Hydrangeas.jpg",
+		           "Jellyfish.jpg",
+		           "Koala.jpg",
+		           "Lighthouse.jpg",
+		           "Penguins.jpg",
+		           "Tulips.jpg"
+		           ];
+		
+		
+		$('button#btn1').on('click', function() {
+			vimg = $('<img src="../images/Tulips.jpg" width="100px" height="100px" id="rimg1">');
+			$(vimg).appendTo($('#img1'));
+		})
+		
+		// 실행중에 새롭게 만들어진 img태그에는 이벤트 적용이 안된다
+		/* 
+		$('rimg1').on('click', function(){
+			alert("코알라");
+		})
+		*/
+		$('#img1').on('click', '#rimg1', function(){
+			// alert("코알라");
+			$(this).css('border', '3px solid orange');
+		})
+		 
+		$('#btn2').on('click', function() {
+			rand = parseInt(Math.random()*imgarr.length)
+			vimg = $('<img/>', {
+				'src' : '../images/' + imgarr[rand],
+				'width' : '200px',
+				'height' : '200px',
+				'id' : 'rimg2',
+				'click' : function(){
+					$(this).css('border', '3px solid orange');
+				}
+			});
+			$(vimg).appendTo($('#img2'));
+		})
+		
+		$('#btn3').on('click', function(){
+			$('<div/>',{
+				'class' : 'test',
+				'text' : '클릭하세요',
+				'style' : 'background:yellow; color:red; font-size:30px;',
+				'click' : function(){
+					alert("안녕하세요~~");
+				}
+			}).appendTo('body');
+		})
+		
+	})
+</script>
+</head>
+<body>
+	<button type="button" id="btn1">이미지 생성</button>
+	<button type="button" id="btn2">이미지생성(properties)</button>
+	<button type="button" id="btn3">div생성</button>
+	<br><br>
+	
+	<div id="img1"></div>
+	<br><br>
+	<div id="img2"></div>
+	
+</body>
+</html>
