@@ -6,7 +6,18 @@
 <script src="../js/jquery-3.3.1.js"></script>
 <script>
 	$(function() {
+		//필터 -> $('p:parent') : 자식을 가지고 있는 p태그를 선택하라
+		//메서드 -> $('p').parent() : p태그의 부모를 선택하라
 
+		//p태그 클릭시 부모를 비교(is)
+		$('p').click(function() {
+			if ($(this).parent().is('div')) {//p태그의 부모가 div인 경우
+				//div(클릭한 p의 부모)에 테두리
+				$(this).parent().css('border', '2px solid blue');				
+			} else {
+				alert("작업 대상이 아닙니다");
+			}
+		})
 	})
 </script>
 </head>
@@ -14,12 +25,11 @@
 	<div>
 		<p>진달래꽃이 피었습니다</p>
 	</div>
-	
+
 	<p>무궁화꽃이 피었습니다</p>
-	
+
 	<div>
 		<p>유채꽃이 피었습니다</p>
 	</div>
-	
 </body>
 </html>
