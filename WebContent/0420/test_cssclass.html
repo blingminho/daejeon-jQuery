@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+// 		$('p').mouseover(function(){
+// 			$(this).css('background', 'yellow');
+// 		})
+		
+// 		$('p').mouseout(function(){
+// 			$(this).css('background', 'white');
+// 		})
+		
+		//css대신 클래스를 이용하기 위해서 style에 클래스를 선언한다
+		$('p').mouseover(function(){
+			$(this).addClass('backcolor');
+		})
+		
+		$('p').mouseout(function(){
+			$(this).removeClass('backcolor');
+		})
+		
+		
+		//버튼 이벤트 생성
+		$('#add').click(function(){
+			$('p').addClass('fontcolor');
+		})
+		
+		$('#remove').click(function(){
+			$('p').removeClass('fontcolor');
+		})
+		
+		$('#toggle').click(function(){
+			$('p').toggleClass('fontcolor');
+		})
+		
+		$('#has').click(function(){
+			if ($('p').hasClass('fontcolor')) {
+				$('p').removeClass('fontcolor');
+			} else {
+				$('p').addClass('fontcolor');
+			}
+		})
+		
+	})
+</script>
+<style type="text/css">
+.backcolor{
+	background: magenta;
+}
+
+.fontcolor{
+	color: red;
+}
+</style>
+
+</head>
+<body>
+	<p>무궁화 꽃이 피었습니다</p>
+	<p>진달래 꽃이 피었습니다</p>
+	<p>개나리 꽃이 피었습니다</p>
+	<br>
+	<button id="add">글자색 변경</button>
+	<button id="remove">글자색 해제</button>
+	<button id="toggle">글자색 변경/해제</button>
+	<button id="has">글자색 변경/해제 - has</button>
+	
+</body>
+</html>

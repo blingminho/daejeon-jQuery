@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		var str = "";
+		
+		$('#contents').click(function(){
+			str = "Contents : 태그상관없이 자식의 내용을 가져오기 \n";
+			
+			$('div').contents().each(function(i){
+				//태그 이름 비교 this.tagName == 'SPAN'
+				//태그 이름 없을때 type비교 : typeof this.tagName == 'undefind'
+				if(typeof this.tagName == 'undefined'){
+					if ($(this).text().trim().length > 0) {
+						str += i + "번째 : 문자열 : " + $(this).text().trim() + "\n";
+					}
+				} else {
+					str += i + "번째 태그이름 : " + this.tagName + "====>>>>" + $(this).text() + "\n";
+				}
+			})
+			
+			alert(str);
+		})
+		
+		
+		$('#child').click(function(){
+			str = "Children 태그가 있는 자식의 내용만 선택한다 \n";
+			
+			$('div').children().each(function(i){
+				str += i + "번째 태그이름==>>" + this.tagName + " : " + $(this).text() + "\n";
+			})
+			
+			alert(str);
+		})
+		
+		
+		$('#cont').click(function(){
+			//b태그로 감싸기, 글자색을 파란색으로 변경하기
+			$('div.d1').contents().wrap('<b/>');
+			$('div.d1').contents().css('color', 'blue').css('font-size', '1.5em');
+		})
+		
+		$('#children').click(function(){
+			//b태그로 감싸기, 글자색을 파란색으로 변경하기
+			$('div.d2').children().wrap('<b/>');
+			$('div.d2').children().css('color', 'blue').css('font-size', '1.5em');
+		})
+		
+		
+		
+		
+		
+		
+	})
+</script>
+<style type="text/css">
+b {
+	background: cyan;
+}
+
+
+
+
+</style>
+</head>
+<body>
+	<div>
+	A
+	<p>P A진달래 꽃이 피었습니다</p>
+	<span>스판
+		<span>안쪽span 무궁화 꽃이 피었습니다</span>
+	</span>
+	</div>
+	
+	<br>
+	<button type="button" id="contents">내용가져오기 - 태그상관없이</button>
+	<button type="button" id="child">태그있는 내용만 가져오기</button>
+	
+	<br><br>
+	<hr>
+	
+	<strong>태그가 있거나 없거나 모든자식은 b태그, color blue 변경</strong>
+	<br><br>
+	<div class="d1"><em>헬로우 World!! em태그가 있어요~~</em></div>
+	<div class="d1">헬로우 Jqueryp em태그가 없어요...</div>
+	<br>
+	<button type="button" id="cont">모든 자식 변경</button>
+	<br><br>
+	
+	
+	
+	<strong>태그가 있는 모든자식은 b태그, color blue 변경</strong>
+	<br><br>
+	<div class="d2"><em>헬로우 World!! em태그가 있어요~~</em></div>
+	<div class="d2">헬로우 Jqueryp em태그가 없어요...</div>
+	<br>
+	<button type="button" id="children">태그가 있는 자식만 변경</button>
+	
+	
+	
+	
+	
+</body>
+</html>

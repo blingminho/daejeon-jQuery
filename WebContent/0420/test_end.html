@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+// 		$(“div”).eq(1) .css()
+// 		앞뒤 형제 모두 파란색 테두리  - siblings()
+// 		다시 되올아와서 (eq(1) ) - -
+// 		            바로 다음 형제 (next() )의 text변경—세번쩨third 
+// 		다시 되돌아와서  -- 
+// 		              뒤 모든 형제(nextAll() )들 배경색 변경-노란색 
+// 		다시 되돌아와서 – 
+// 		                  앞 형제(prev() ) 배경색 변경  -  그린 
+		
+		$('div:eq(1)').css('border', '2px solid green')
+			.siblings().css('border', '2px solid blue')
+			.end().next().text('세번째 thrid')
+			.end().nextAll().css('background', 'yellow')
+			.end().prev().css('background', 'green');
+		
+		
+	})
+</script>
+<style type="text/css">
+div {
+	width: 150px;
+	height: 150px;
+	border: 1px solid orange;
+	float: left;
+	margin-left: 5px;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+	<div>A</div>
+	<div>B</div>
+	<div>C</div>
+	<div>D</div>
+	<div>E</div>
+	<div>F</div>
+</body>
+</html>

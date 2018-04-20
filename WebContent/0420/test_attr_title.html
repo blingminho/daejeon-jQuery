@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('button').click(function(){
+			$.each($('img'), function(i){
+				var name = $(this).attr('src');
+				var startIndex = name.lastIndexOf('/') + 1;
+				var endIndex = name.lastIndexOf('.');
+// 				alert(startIndex + " : " + endIndex + " : " + name.length);
+				name = name.substr(startIndex, endIndex);
+				$(this).attr('title', name);
+				
+			})
+			
+		})
+	})
+</script>
+<style type="text/css">
+img{
+	width: 150px;
+	height: 150px;
+}
+</style>
+</head>
+<body>
+	<img src="../images/풍차.jpg">
+	<img src="../images/셔틀콕.jpg">
+	<img src="../images/수국9.jpg">
+	<img src="../images/수지.jpg">
+	<img src="../images/Desert.jpg">
+	<br>
+	<button type="button">title설정</button>
+	
+</body>
+</html>
