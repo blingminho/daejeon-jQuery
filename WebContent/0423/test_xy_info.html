@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$(document).mousemove(function(){
+			var info = "page의 좌표 : " + event.pageX + "," + event.pageY + 
+			" screen의 좌표 : " + event.screenX + "," + event.screenY;
+			
+			$('div').text(info);
+			
+			//page좌표가 200,200이 되는 순간에 이미지를 표시한다
+			if (event.pageX == 200 & event.pageY == 200) {
+				$('body').append('<img src="../images/풍차.jpg">');
+			}
+			
+			
+		})
+	})
+</script>
+<style>
+body {
+	background-color: #eef;
+}
+
+div {
+	padding: 20px;
+	border: 1px solid red;
+}
+</style>
+
+</head>
+<body>
+	<div id="log"></div>
+
+</body>
+</html>

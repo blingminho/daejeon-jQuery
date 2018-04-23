@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('p').hover(function(){
+			//mouseover
+			$(this).addClass('chover');
+		}, function(){
+			//mouseout
+			$(this).removeClass('chover');
+		});
+	})
+</script>
+<style type="text/css">
+.chover{
+	font-size: 2.0em;
+}
+
+</style>
+</head>
+<body>
+	<p>봄비가 옵니다</p>
+	<p>봄비가 내렸습니다</p>
+	<p>복숭아 꽃이 피었습니다</p>
+</body>
+</html>

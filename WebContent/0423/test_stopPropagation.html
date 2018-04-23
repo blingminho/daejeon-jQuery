@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function(){
+		$('button').click(function(){
+			$(this).css('border', '2px solid red');
+// 			event.stopPropagation();// == return false;
+			return false;
+		})
+		
+		$('span').on('click', function(){
+			$(this).css('border', '2px solid green');
+// 			event.stopPropagation();
+			return false;
+		})
+		
+		$('div').on('click', function(){
+			$(this).css('border', '2px solid blue');
+			
+		})
+	})
+</script>
+<style type="text/css">
+div{
+	height: 300px;
+	padding: 30px;
+	background: pink;
+}
+
+span{
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background: yellow;
+	padding: 30px;
+}
+
+</style>
+</head>
+<body>
+	<div><span><button>클릭하세요</button></span></div>
+</body>
+</html>
