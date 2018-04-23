@@ -6,17 +6,43 @@
 <script src="../js/jquery-3.3.1.js"></script>
 <script>
 	$(function() {
-		$('button').click(function(){
-			$.each($('img'), function(i){
-				var name = $(this).attr('src');
-				var startIndex = name.lastIndexOf('/') + 1;
-				var endIndex = name.lastIndexOf('.');
-// 				alert(startIndex + " : " + endIndex + " : " + name.length);
-				name = name.substr(startIndex, endIndex);
-				$(this).attr('title', name);
-				
-			})
+		$('button#remove').click(function(){
 			
+			$('img').removeAttr('title');
+			
+			
+		})
+		
+		
+		$('button#set').click(function(){
+			//두번째
+			$('img').attr('title', function(){
+				var imgsrc = $(this).attr('src');
+				
+				var startIndex = imgsrc.lastIndexOf('/') + 1;
+				var endIndex = imgsrc.lastIndexOf('.');
+				
+				title = imgsrc.substring(startIndex, endIndex);
+				
+				
+				return title;
+			});
+			
+			
+			
+			
+			//첫번째
+			/* 
+			$.each($('img'), function(i){
+				var imgsrc = $(this).attr('src');
+				
+				var startIndex = imgsrc.lastIndexOf('/') + 1;
+				var endIndex = imgsrc.lastIndexOf('.');
+				
+				var title = imgsrc.substring(startIndex, endIndex);
+				$(this).attr('title', title);
+			})
+			*/
 		})
 	})
 </script>
@@ -34,7 +60,8 @@ img{
 	<img src="../images/수지.jpg">
 	<img src="../images/Desert.jpg">
 	<br>
-	<button type="button">title설정</button>
+	<button id="set" type="button">title설정</button>
+	<button id="remove" type="button">title삭제</button>
 	
 </body>
 </html>
