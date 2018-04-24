@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		var count = 0;
+		$('p').on('click', function(){
+			$(this).css('font-size', '+=3px');
+			count++;
+			
+			if (count >= 5) {
+				$(this).off('click');
+			}
+		})
+		
+	})
+</script>
+</head>
+<body>
+	<h1>on, off / bind, unbind</h1>
+	<p style="font-size:20px;">클릭하시면 큰 글씨로 볼 수 있습니다.(5번까지만...)</p>
+</body>
+</html>

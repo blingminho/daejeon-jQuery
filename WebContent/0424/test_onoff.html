@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('#p1').on('click', function() {
+			$(this).addClass('intro');
+		})
+
+		//스타일 삭제
+		$('button#style').on('click', function() {
+			$('#p1').removeClass('intro');
+		})
+		
+		//========================================			
+		$('p#p2').on('click', function(){
+			var r = parseInt(Math.random()*255);
+			var g = parseInt(Math.random()*255);
+			var b = parseInt(Math.random()*255);
+			$(this).css('font-size', '+=3px').css('color', 'rgb(' + r + ',' + g + ',' + b + ')');
+		})
+		
+		//이벤트 삭제
+		$('button#event').on('click', function() {
+			$('p#p2').off('click');
+		})
+
+	})
+</script>
+<style type="text/css">
+.intro {
+	font-size: 150%;
+	color: red;
+}
+</style>
+</head>
+<body>
+	<p id="p1">무궁화 무궁화 우리나라 꽃~</p>
+	<br>
+	<button id="style">스타일삭제</button>
+
+	<p id="p2">진달래 진달래 ~</p>
+	<button id="event">이벤트삭제</button>
+</body>
+</html>

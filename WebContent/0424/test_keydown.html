@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('textarea').keydown(function() {
+			
+			//입력된 글자를 가져온다
+			var inputText = $(this).val();
+			
+			//입력된 글자수를 구한다
+			var len = inputText.length;
+			
+			//전체길이에서 입력된 글자수를 뺀다
+			var remainLen = 100 - len;
+			
+			//span에 출력한다
+			$('span').text(remainLen);
+			
+			//남은 글자수가 0이면 readonly 속성 설정
+			if (remainLen <= 0) {
+				$(this).prop('readonly', true);
+				alert("입력종료");
+			}
+			
+			
+		})
+	})
+</script>
+</head>
+<body>
+	<h1>하고싶은 말을 남겨주세요(100글자 이내)</h1>
+	<br>
+	<textarea rows="10" cols="50"></textarea>
+	
+	<br>
+	<p>남은 글자수<span>100</span></p>
+	
+	
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('.but').bind('click', function(){
+			//새로운 버튼을 생성한다
+// 			var cbut = "<button class='but'>새로운 버튼</button>";
+			var cbut = $('<button/>', {
+				'class' : 'but',
+				'text'	: '새로운 버튼'
+			})
+			
+			//#res에 추가한다
+			$('#res').append(cbut);
+		})
+		
+		//해제버튼을 클릭하면 새로운 버튼을 해제시킨다
+		$('#clear').bind('click', function(){
+			$('.but').unbind('click');
+// 			$('.but').off('click');
+		})
+		
+		
+	})
+</script>
+<style type="text/css">
+	div{
+		border: 1px solid blue;
+		padding: 10px;
+	}
+
+</style>
+</head>
+<body>
+	<div>
+		<button class="but">버튼1</button>
+		<button class="but">버튼2</button>
+		<button class="but">버튼3</button>
+	</div>
+	<br>
+	<button id="clear">해제</button>
+	<hr color="red">
+	<div id="res">
+		
+	</div>
+	
+	
+</body>
+</html>

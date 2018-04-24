@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		//기존의 요소뿐만 아니라 새롭게 만들어지는 요소에도 같은 이벤트 핸들러가 적용된다
+// 		$('div').delegate('.but', 'click', function(){ })
+		$('div').on('click', '.but', function(){
+			var cbut = $('<button/>', {
+				'class' : 'but',
+				'text'	: '새로운버튼'
+			})
+			
+			$('div#res').append(cbut);
+		})
+		
+		$('#clear').on('click', function(){
+// 			$('div#res').undelegate('click');
+			$('div#res').off('click');
+		})
+		
+		//추가버튼 클릭시
+		var count = 0;
+		$('#filediv').on('click', '.add', function(){
+			count++;
+			var file = "";
+			file += "<span id='" + count + "'>"
+			file += "파일 : <input type='file'>";
+			file += "<button class='add'>추가</button>";
+			file += "<button class='" + count + "'>삭제</button><br></span>";
+			$('#filediv').append(file);
+		})
+		
+		//삭제버튼 클릭시
+		$('#filediv').on('click', 'button', function(){
+			var num = $(this).attr('class');
+			
+			$('#' + num).remove();
+			
+		})
+		
+	})
+</script>
+<style type="text/css">
+div {
+	border: 1px solid blue;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+	<div>
+		<button class="but">버튼1</button>
+		<button class="but">버튼2</button>
+		<button class="but">버튼3</button>
+	</div>
+	<br>
+	<button id="clear">해제</button>
+	<hr color="red">
+	<div id="res"></div>
+	
+	<hr color="green">
+	<hr color="pink">
+	
+	<div id="filediv">
+		이름 : <input type="text"><br>
+		파일 : <input type="file">
+		<button class="add">추가</button><br>	
+	</div>
+	
+</body>
+</html>
