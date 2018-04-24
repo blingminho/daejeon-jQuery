@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('img').hover(function(){
+			$(this).addClass('border_blue');
+		}, function(){
+			$(this).removeClass('border_blue');
+		})
+		
+		
+		$('.guess_box').on('click', function(){
+			var sale = parseInt(Math.random()*5) + 5;
+			
+			$('.guess_box p').remove();
+			
+			$(this).append("<p> 할인률:"+sale+"% </p>");
+			$(this).off('click');
+		})
+		
+		
+		
+// 		guess_box 를 클릭하면    
+// 	    랜덤을 이용해서 할인률 구하기 (5~10사이)
+// 	   할인률을  <p> 7 % </p> 의 형태로 만들기 
+// 	    append나 appendTo를 이용해서  할인률을  guess_box에 추가 
+// 		클릭은 한번만 할 수 있게 한다 – 이벤트 해제 
+
+// 	   다른 guest_box를 클릭하면 그의  할인률은 지우고 
+// 	    현재 클릭한 guest_box의 할인율만 보여지게 한다  
+	 
+
+		
+		
+		
+		
+		
+		
+		
+		
+	})
+</script>
+<style type="text/css">
+.guess_box{
+	float: left;
+}
+#main{
+	background-color: gray;
+	height: 200px;
+}
+.border_blue{
+	border: 2px solid blue;
+}
+</style>
+</head>
+<body>
+	<div id="header">
+	   <h2> Jump for Joy Sale </h2>
+	</div>
+	<div id="main">
+	   <div class="guess_box"><img src="../images/풍차.jpg" /></div>
+	   <div class="guess_box"><img src="../images/대나무숲.jpg" /></div>
+	   <div class="guess_box"><img src="../images/산.png" /></div>
+	   <div class="guess_box"><img src="../images/셔틀콕.jpg" /></div>
+	</div>
+</body>
+</html>
