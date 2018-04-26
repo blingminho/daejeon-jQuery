@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('button').on('click',function(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+// 					document.getElementById("demo").innerHTML = this.responseText;
+					$('#demo').html(this.responseText);
+				}
+			};
+			xhttp.open("GET", "ajax_info.jsp", true);
+			xhttp.send();
+		})
+	})
+</script>
+</head>
+<body>
+	<h1>The XMLHttpRequest Object</h1>
+	<button type="button">전송</button>
+	<div id="demo"></div>
+</body>
+</html>
+
