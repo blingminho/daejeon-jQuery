@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		var xhttp = new XMLHttpRequest();
+		
+		$('#text').on('click', function(){
+			//요청
+			xhttp.open('get', 'text.jsp', true);
+			xhttp.send();
+			
+			xhttp.onreadystatechange = function() {
+				
+				//응답
+				if (this.readyState == 4 && this.status == 200) {
+					
+					var res = this.responseText.split('/');
+					
+					var code = "<ul>";
+					
+					$.each(res, function(i){
+						code += "<li>" + res[i] + "</li>";
+					})
+					
+					code += "</ul>";
+					$('#res1').html(code);
+				}
+			}
+		})
+		
+		/*  */
+		$('#jArr').on('click',function(){
+			
+			//요청
+			xhttp.open('get', 'jsonArr.jsp', true);
+			xhttp.send();
+			
+			//응답
+			xhttp.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200) {
+					var jsonDatas = JSON.parse(this.responseText);
+					
+					var code = "<ol>";
+					
+					$.each(jsonDatas, function(i){
+						code += "<li>" + jsonDatas[i] + "</li>";
+					})
+					
+					code += "</ol>";
+					
+					$('#res2').html(code);
+				}
+			}		
+		})
+		
+		/*  */
+		$('#jobj').on('click', function(){
+			
+			//요청
+			xhttp.open('get', 'jsonObj.jsp', true);
+			xhttp.send();
+			
+			//응답
+			xhttp.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200) {
+					var jsonObjDatas = JSON.parse(this.responseText);
+					
+					var code = "";
+					
+					code = "이름 : " + jsonObjDatas.name + "<br>";
+					code += "주소 : " + jsonObjDatas.addr + "<br>";
+					code += "전화번호 : " + jsonObjDatas.tel + "<br>";
+					
+					$('#res3').html(code);
+				}
+			}
+		})
+		
+		/*  */
+		$('#jobjarr').on('click', function(){
+			
+			//요청
+			xhttp.open('get', 'jsonObjArr.jsp', true);
+			xhttp.send();
+			
+			//응답
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					
+					var jsonObjArr = JSON.parse(this.responseText);
+					var code = "";
+					$.each(jsonObjArr, function(i){
+						code += i + "번째 회원정보<br>";
+						code += "이름 : " + jsonObjArr[i].name + "<br>";
+						code += "주소 : " + jsonObjArr[i].addr + "<br>";
+						code += "전화번호 : " + jsonObjArr[i].tel + "<br><hr>";
+					})
+					
+					$('#res4').html(code);
+				}
+			}
+		})
+	})
+</script>
+<style type="text/css">
+div {
+	width: 200px;
+	height: auto;
+	margin: 10px;
+	float: left;
+	border: 1px solid red;
+}
+</style>
+</head>
+<body>
+	<button id="text" type="button">Text</button>
+	<button id="jArr" type="button">jsonArr</button>
+	<button id="jobj" type="button">jsonObject</button>
+	<button id="jobjarr" type="button">jsonObjArr</button>
+	
+	<br>
+	<div id="res1"></div>
+	<div id="res2"></div>
+	<div id="res3"></div>
+	<div id="res4"></div>
+</body>
+</html>
