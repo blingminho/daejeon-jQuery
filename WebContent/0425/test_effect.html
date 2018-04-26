@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('#show').on('click', function(){
+			$('#dog').show(1000, function(){//콜백함수 사용(show가 된 이후에 실행)
+				alert("야생의 포켓몬이 나타났다~!");
+			});
+		})
+		$('#hide').on('click', function(){
+			$('#dog').hide(1000);
+		})
+		$('#toggle').on('click', function(){
+			$('#dog').toggle(600);
+		})
+		//==========================================================
+		$('#sup').on('click', function(){
+// 			$('#dog').slideUp(500, 'swing');
+			$('#dog').slideUp(500, 'linear');
+		})
+		$('#sdown').on('click', function(){
+			$('#dog').slideDown('slow');
+		})
+		$('#stoggle').on('click', function(){
+			$('#dog').slideToggle(800);
+		})
+		//==========================================================
+		$('#fin').on('click', function(){
+			$('#dog').fadeIn();
+		})
+		$('#fout').on('click', function(){
+			$('#dog').fadeOut();
+		})
+		$('#fto').on('click', function(){
+			$('#dog').fadeTo(500, 0.5);
+		})
+		$('#ftoggle').on('click', function(){
+			$('#dog').fadeToggle();
+		})
+		
+		
+		
+		
+	})
+</script>
+</head>
+<body>
+<body>
+	<button id="show">Show it</button>
+	<button id="hide">Hide it</button>
+	<button id="toggle">Toggle it</button>
+	<button id="sup">SlideUp it</button>
+	<button id="sdown">SlideDown it</button>
+	<button id="stoggle">SlideToggle it</button>
+	<button id="fin">FadeIn it</button>
+	<button id="fout">FadeOut it</button>
+	<button id="fto">FadeTo it</button>
+	<button id="ftoggle">FadeToggle it</button>
+	<br>
+	<hr>
+	<img id="dog" src="../images/Hydrangeas.jpg" alt="" width="120" height="100" style="display: none" />
+</body>
+</html>

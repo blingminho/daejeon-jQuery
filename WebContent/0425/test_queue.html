@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>선생님꺼 가져오자 상준아~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('#btn1').on('click', function(){
+			//보이기, 이름, 배경색변경, 원래자리로 이동
+			$('.ani').show(500).animate({'left': '+=100px'}, 500);
+			
+			$('.ani').queue(function(){
+				$(this).css('background', 'red');
+				$(this).dequeue();
+			})
+			
+			$('.ani').animate({'left': '-=100px'}, 500);
+			
+			//배경색을 녹색으로 변경, 사라짐
+			$('.ani').queue(function(){
+				$(this).css('background', 'green');
+				$(this).dequeue();
+			})
+			
+			$('.ani').fadeOut(500);
+		})
+		
+		
+		$('#btn2').on('click', function(){
+			//글자크리글 2배로 늘리기, 오른쪽으로 이동, 글자색을 빨강색으로 바꾸기
+			$('.pani').animate({'font-size': '2em', 'left': '+=100px', 'color'})
+			
+			//왼쪽으로 이동, 글자크기 원래, 글자색 검점으로 변경
+			
+			
+			
+		})
+		
+		
+	})
+</script>
+<style type="text/css">
+div {
+	width: 100px;
+	height: 100px;
+	background-color: green;
+	position: relative;
+	display: none;
+}
+p {
+	position: relative;
+}
+</style>
+</head>
+<body>
+	<button id="btn1">시작</button>
+	<br>
+	<hr color="red">
+	<div class="ani"></div>
+	<br>
+	<p class="ani">무궁화</p>
+	
+	
+	
+</body>
+</html>

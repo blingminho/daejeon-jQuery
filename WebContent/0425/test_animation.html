@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('#left').on('click', function(){
+			$('#img1').animate({left: '-=100px'}, 500);
+		})
+		
+		$('#right').on('click', function(){
+			$('#img1').animate({left: '+=100px'}, 500);
+		})
+		
+		$('#p1').on('click', function(){
+			$(this).css('font-size', '+=5px');
+		})
+		
+		$('#p2').on('click', function(){
+			$(this).animate({'font-size': '+=5px'}, 500);
+		})
+		
+		$('#delay').on('click', function(){
+			$('#img2').animate({'left': '+=100px'}, 600)
+					.delay(1000)
+					.animate({'opacity': '-=0.5'}, 500)
+					.delay(1000)
+					.animate({'left': '-=100px'}, 600);
+			
+			
+		})
+		
+		
+	})
+</script>
+<style type="text/css">
+img {
+	width: 120px;
+	height: 100px;
+	position: relative;
+}
+#p2 {
+	position: relative;
+}
+</style>
+</head>
+<body>
+	<img src="../images/image.3.jpg" id="img1">
+	<br>
+	<br>
+	<br>
+	
+	<button id="left">왼쪽 이동</button>
+	<button id="right">오른쪽 이동</button>
+	
+	<br><br><br>
+	<p id="p1">무궁화 꽃</p>
+	<p id="p2">진달래 꽃</p>
+	
+	<br><br>
+	<h1>delay : 여러개의 동작사이에 지연시간을 준다</h1>
+	<img id="img2" src="../images/풍차.jpg">
+	<br>
+	<button id="delay">delay</button>
+	
+	
+</body>
+</html>
