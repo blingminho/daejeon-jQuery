@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.js"></script>
+<script>
+	$(function() {
+		$('#text').on('click', function(){
+			$.ajax({
+				url : "/projquery/0426ajaxdata/text.jsp",
+				type : "get",
+				/* data : '', */
+				dataType : 'text',
+				success : function(res){
+					var dataArr = res.split('/');
+					
+					var code = "<ul>";
+					$.each(dataArr, function(i){
+						code += "<li>" + dataArr[i] + "</li>";
+					})
+					
+					code += "</ul>"
+					$('#res1').html(code);
+				},
+				error : function(){
+					alert('실패!');
+				}
+			})
+		})
+		
+		/*  */
+		$('#jArr').on('click', function(){
+			$.ajax({
+				url : "/projquery/0426ajaxdata/jsonArr.jsp",
+				type : "get",
+				/* data : "", */
+				dataType : "json",
+				success : function(data) {
+					var jsonArray = data;
+					
+					var code = "<ol>";
+					$.each(jsonArray, function(i) {
+						code += "<li>" + jsonArray[i] + "</li>";
+					})
+					
+					code += "</ol>";
+					$('#res2').html(code);
+				},
+				error : function() {
+					alert('에러발생');
+				}
+			})
+		})
+		
+		/*  */
+		$('#jobj').on('click', function(){
+			$.ajax({
+				url : "/projquery/0426ajaxdata/jsonObj.jsp",
+				type : "get",
+				/* data : "", */
+				dataType : "json",
+				success : function(data) {
+					var jsonObj = data;
+					
+					var code = "";
+					code = "이름 : " + jsonObj.name + "<br>";
+					code += "주소 : " + jsonObj.addr + "<br>";
+					code += "전화번호 : " + jsonObj.tel + "<br>";
+					
+					$('#res3').html(code);
+				},
+				error : function() {
+					alert('에러발생');
+				}
+			})
+		})
+		
+		/*  */
+		$('#jobjarr').on('click', function(){
+			$.ajax({
+				url : "/projquery/0426ajaxdata/jsonObjArr.jsp",
+				type : "get",
+				/* data : "", */
+				dataType : "json",
+				success : function(data) {
+					var jsonObjArray = data;
+					var code = "";
+					
+					$.each(jsonObjArray, function(i) {
+						code += "이름 : " + jsonObjArray[i].name + "<br>";
+						code += "주소 : " + jsonObjArray[i].addr + "<br>";
+						code += "전화번호 : " + jsonObjArray[i].tel + "<br><hr>";
+					})
+					
+					$('#res4').html(code);
+				},
+				error : function() {
+					alert('에러발생');
+				}
+			})
+		})
+
+	})
+</script>
+<style type="text/css">
+div {
+	width: 200px;
+	height: auto;
+	margin: 10px;
+	float: left;
+	border: 1px solid red;
+}
+</style>
+</head>
+<body>
+	<button id="text" type="button">Text</button>
+	<button id="jArr" type="button">jsonArr</button>
+	<button id="jobj" type="button">jsonObject</button>
+	<button id="jobjarr" type="button">jsonObjArr</button>
+	
+	<br>
+	<div id="res1"></div>
+	<div id="res2"></div>
+	<div id="res3"></div>
+	<div id="res4"></div>
+</body>
+</html>
