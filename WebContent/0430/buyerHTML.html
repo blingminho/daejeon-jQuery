@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script>
+	$(function(){
+		$('td').on('click','div',function(){
+			temp = "";
+			temp = $(this).text();
+			$('#ser').val(temp);
+			event.preventDefault;
+		});
+		$('#btn2').on('click', function() {
+			$.ajax({
+				//서블릿 주소 앞에 /를 안붙이면 내부디렉토리에서 찾는다
+				url:'/projquery/buyerServlet'
+				,type:'post'
+				,data:{ser:$('input').val()}
+				,dataType:'json'
+				//자료 전송 처리
+				,success:function(res){
+					code="<table>";
+// 					code+="<tr>";
+// 					code+="<td>ID </td>";
+// 					code+="<td>GU </td>";
+// 					code+="<td>NAME </td>";		티디 티알 다시 하세요
+// 					code+="</tr>";
+// 					$.each(res,function(i){		vo하나라서 포문 필요없어요
+						code +="<tr>";
+						code += "<td>" + res.id + "</td>";
+						code += "<td>" + res.name + "</td>";
+						code += "<td>" + res.lgu + "</td>";
+						code +="</tr>";
+// 					});
+					code += "</table>";
+					$("#res").html(code);
+				}
+			// 에러처리
+				,error: function(xhr,request,status){
+					alert("status :" + xhr.status +"\r\n" + 
+					"code : " +  request.statusText  + "\r\n" + 
+				 	"message : " +    request.responseText);
+				}
+			})
+			});
+		
+		//ajax단축메뉴 url,data,success,datatype
+		$.get(
+				'/projquery/buyerServlet',
+				function(res){
+					code="";
+					$.each(res,function(i){
+						code+="<div id='"+res[i].id +"'>"+res[i].name+"</div>"
+					});
+					$("#td").html(code);
+				},
+				'json'
+				)
+	});
+	</script>
+	<style>
+		div{
+			border: 2px solid #2acf9d;
+		}
+		table{
+			border: 2px solid gray;
+		}
+		tr{
+			border: 2px solid gray;
+		}
+		td{
+			border: 2px solid gray;
+		}
+		th{
+			border: 2px solid gray;
+		}
+		#navi{
+			width: 100px;
+			height: 400px;
+		}
+		#res{
+			width: 400px;
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+	<form>
+<!-- 	<form action='/projquery/buyerServlet' method="post"> -->
+		<table>
+			<tr>
+				<th>1123</th>
+				<th>ddd</th>
+			</tr>fhghhjghfg
+			<tr>
+			<td id="td"></td>
+			<td><div id="res">ddd</div></td>
+			</tr>
+		</table>
+		<button type="submit" id="btn">전체</button>
+<!-- 		버튼 하나는 서브밋, 하나는 버튼으로 해서  액션하나로 함-->
+		<input name="ser" type="text" id="ser">
+		<button type="button" id="btn2">검색</button>
+	</form>
+	
+</body>
+</html>

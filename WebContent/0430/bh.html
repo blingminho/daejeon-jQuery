@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script>
+	$(function(){
+		$('#table').on('click',function(){
+			$.ajax({
+				url:'/projquery/bh'
+				,type:'get'
+				,dataType:'json'
+				,success:function (res) {
+					code="<table>";
+					code+="<tr>";
+					code+="<td>id </td>";
+					code+="<td>gu </td>";
+					code+="<td>nm</td>";
+					code+="</tr>";
+					$.each(res,function(i){
+						code+="<tr>";
+						code += "<td>" + res[i].id + "</td>";
+						code += "<td>" + res[i].gu + "</td>";
+						code += "<td>" + res[i].nm + "</td>";
+						code+="</tr>";
+					});
+					code +="</table>";
+					$('#res').html(code);
+				}
+				,error:function(){
+					alert("실패");
+				}
+			})
+		
+		});
+	});
+	</script>
+	<style>
+	div{
+		border:2px solid red
+		width:500px;
+	}
+	</style>
+</head>
+<body>
+	
+	<br>
+	<br>
+	<input type="text">
+	<button id="ser">검색</button>
+	<button id="table" type="button">table</button>
+	<br>
+	<br>
+	<hr>
+	<br>
+	<div id="res"></div>
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script>
+	$(function() {
+		$('#btn1').on('click', function() {
+		$.ajax({
+			//서블릿 주소 앞에 /를 안붙이면 내부디렉토리에서 찾는다
+			url:'/projquery/lprodServlet'
+			,type:'get'
+			,dataType: 'json'
+			//자료 전송 처리
+			,success:function(res){
+				code="<table>";
+				code+="<tr>";
+				code+="<td>ID </td>";
+				code+="<td>GU </td>";
+				code+="<td>NAME </td>";
+				code+="</tr>";
+				$.each(res,function(i){
+					code+="<tr>";
+					code += "<td>" + res[i].id + "</td>";
+					code += "<td>" + res[i].gu + "</td>";
+					code += "<td>" + res[i].nm + "</td>";
+					code+="</tr>";
+				});
+				code += "</table>";
+				$("#res").html(code);
+			}
+		// 에러처리
+			,error: function(xhr,request,status){
+				alert("status :" + status +"\r\n" + 
+				"code : " +  request.statusText  + "\r\n" + 
+			 	"message : " +    request.responseText);
+			}
+		})
+		});
+		$("#btn2").on('click',function(){
+			$("#res").load("hello");
+		});
+	});
+	
+</script>
+<style>
+table{
+border: 2px solid red;
+border-collapse: collapse;
+}
+td{
+border: 2px solid red;
+width:200px;	
+}
+hr {
+	border: 2px solid red;
+}
+</style>
+</head>
+<body>
+	<br>
+	<br>
+	<button id="btn1" type="button">lprod table</button>
+	<button id="btn2" type="button">load button</button>
+	<br>
+	<br>
+	<hr>
+	<br>
+	<div id="res"></div>
+
+
+
+
+</body>
+</html>
