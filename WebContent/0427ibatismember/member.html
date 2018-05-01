@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="../js/jquery-3.3.1.min.js"></script>
+	<script>
+	$(function(){
+		$('button').on('click', function(){
+			$.ajax({
+				url:'/projquery/MemberList'
+					,type:'get'
+							,dataType: 'json'
+								,success: function(res) {
+									code="<table>";
+									code+="<tr>";
+									code+="<td>아이디 </td>";
+									code+="<td>이름 </td>";
+									code+="<td>전화번호</td>";
+									code+="<td>이메일</td>";
+									code+="<td>주소</td>";
+									code+="</tr>";
+										$.each(res, function(i) {				
+									code+="<tr>";
+											code += "<td>" + res[i].id + "</td>";
+											code += "<td>" + res[i].name + "</td>";
+											code += "<td>" + res[i].hp + "</td>";
+											code += "<td>" + res[i].mail + "</td>";
+											code += "<td>" + res[i].addr1 + "</td>";
+									code+="</tr>";
+										})	
+											code += "</table>";
+											$("#res").html(code);
+								},
+								error: function(xhr) {
+									alert("실패 :"+xhr.status);
+								}
+			});
+			
+		});
+	});
+	</script>
+	<style>
+	
+	</style>
+</head>
+<body>
+	
+	
+	<br>
+	<button type="button">멤버리스트</button>
+	<br>
+	<hr>
+	<br>
+	<div id="res"></div>
+	
+</body>
+</html>
