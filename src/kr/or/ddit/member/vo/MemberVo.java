@@ -3,11 +3,12 @@ package kr.or.ddit.member.vo;
 public class MemberVo {
 	private String mem_id;
 	private String mem_pass;
-	private String mem_nama;
+	private String mem_name;
 	private String mem_mail;
 	private String mem_hp;
 	private String mem_add1;
 	private String mem_add2;
+	private String mem_zip;
 	public String getMem_id() {
 		return mem_id;
 	}
@@ -21,10 +22,10 @@ public class MemberVo {
 		this.mem_pass = mem_pass;
 	}
 	public String getMem_nama() {
-		return mem_nama;
+		return mem_name;
 	}
 	public void setMem_nama(String mem_nama) {
-		this.mem_nama = mem_nama;
+		this.mem_name = mem_nama;
 	}
 	public String getMem_mail() {
 		return mem_mail;
@@ -53,7 +54,7 @@ public class MemberVo {
 	@Override
 	public String toString() {
 		return "MemberVo [mem_id=" + mem_id + ", mem_pass=" + mem_pass
-				+ ", mem_nama=" + mem_nama + ", mem_mail=" + mem_mail
+				+ ", mem_nama=" + mem_name + ", mem_mail=" + mem_mail
 				+ ", mem_hp=" + mem_hp + ", mem_add1=" + mem_add1
 				+ ", mem_add2=" + mem_add2 + "]";
 	}
@@ -62,7 +63,7 @@ public class MemberVo {
 		super();
 		this.mem_id = mem_id;
 		this.mem_pass = mem_pass;
-		this.mem_nama = mem_nama;
+		this.mem_name = mem_nama;
 		this.mem_mail = mem_mail;
 		this.mem_hp = mem_hp;
 		this.mem_add1 = mem_add1;
@@ -81,7 +82,7 @@ public class MemberVo {
 		result = prime * result
 				+ ((mem_mail == null) ? 0 : mem_mail.hashCode());
 		result = prime * result
-				+ ((mem_nama == null) ? 0 : mem_nama.hashCode());
+				+ ((mem_name == null) ? 0 : mem_name.hashCode());
 		result = prime * result
 				+ ((mem_pass == null) ? 0 : mem_pass.hashCode());
 		return result;
@@ -120,10 +121,10 @@ public class MemberVo {
 				return false;
 		} else if (!mem_mail.equals(other.mem_mail))
 			return false;
-		if (mem_nama == null) {
-			if (other.mem_nama != null)
+		if (mem_name == null) {
+			if (other.mem_name != null)
 				return false;
-		} else if (!mem_nama.equals(other.mem_nama))
+		} else if (!mem_name.equals(other.mem_name))
 			return false;
 		if (mem_pass == null) {
 			if (other.mem_pass != null)
@@ -133,6 +134,12 @@ public class MemberVo {
 		return true;
 	}
 	public MemberVo() {
+	}
+	public String getMem_zip() {
+		return mem_zip;
+	}
+	public void setMem_zip(String mem_zip) {
+		this.mem_zip = mem_zip;
 	}
 	
 }

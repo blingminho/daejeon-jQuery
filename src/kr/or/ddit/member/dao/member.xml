@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="member">
+	<typeAlias alias="MemberVO" type="kr.or.ddit.member.vo.MemberVo"/>
+	<typeAlias alias="ZipVO" type="kr.or.ddit.ziptb.vo.ZipVo"/>
+	<!-- 모든 MEMBER 정보 조회 -->
+	<select id="listMemberAll" resultClass="MemberVO">
+		SELECT *
+		FROM member
+	</select>
+	
+	<!-- id중복검사 -->
+	<select id="idCheck" parameterClass="String" resultClass="String">
+		SELECT MEM_ID
+		FROM MEMBER
+		WHERE MEM_ID = #mem_id#
+	</select>
+	
+	<!-- 우편번호검색 -->
+	<select id="zipSearch" parameterClass="String" resultClass="ZipVO">
+		SELECT *
+		FROM ZIPTB
+		WHERE DONG LIKE #dong#||'%'
+	</select>
+	
+	<!-- 가입 -->
+	<insert id="insertMember" parameterClass="MemberVO">
+		INSERT INTO MEMBER(
+			MEM_ID,
+			MEM_NAME,
+			MEM_PASS,
+			MEM_ZIP,
+			MEM_ADD1,
+			MEM_ADD2,
+			MEM_MAIL
+		) VALUES(
+			#mem_id#,
+			#mem_name#,
+			#mem_pass#,
+			#mem_zip#,
+			#mem_add1#,
+			#mem_add2#,
+			#mem_mail#
+		)
+		
+		<selectKey keyProperty="mem_id" resultClass="String">
+			SELECT MEM_ID
+			FROM MEMBER
+			WHERE MEM_ID = #mem_id#
+		</selectKey>
+	</insert>
+	
+	
+	
+	
+	
+	
+</sqlMap>

@@ -7,6 +7,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 import kr.or.ddit.ibatis.config.SqlMapClientFactory;
 import kr.or.ddit.member.vo.MemberVo;
+import kr.or.ddit.ziptb.vo.ZipVo;
 
 public class MemberDaoImpl implements MemberDaoInf {
 
@@ -24,6 +25,8 @@ public class MemberDaoImpl implements MemberDaoInf {
 	{//초기화 블럭
 		smc = SqlMapClientFactory.getSqlMapClient();
 	}
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MemberVo> getMemberAll() {
 		List<MemberVo> list = null;
@@ -33,6 +36,23 @@ public class MemberDaoImpl implements MemberDaoInf {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	@Override
+	public String idCheck(String mem_id) throws SQLException {
+		String result = (String)smc.queryForObject("member.idCheck", mem_id);
+		System.out.println(result);
+		return result;
+//		return (String)smc.queryForObject("member.idCheck", mem_id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ZipVo> zipSearch(String dong) throws SQLException {
+		return (List<ZipVo>)smc.queryForList("member.zipSearch", dong);
+	}
+	@Override
+	public String insertMember(MemberVo vo) throws SQLException {
+		return (String)smc.queryForObject("member.insertMember", vo);
 	}
 
 }

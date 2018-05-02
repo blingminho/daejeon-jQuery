@@ -45,6 +45,15 @@ public class ProdServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		if (list == null) {
+			try {
+				response.getWriter().write("{}");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+		}
+		
 		/*
 		JsonArray jsonArray = new JsonArray();
 		for (int i = 0; i < list.size(); i++) {
@@ -87,34 +96,44 @@ public class ProdServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
-		JsonObject jsonObj = new JsonObject();
-		
-		jsonObj.addProperty("prod_id", prodVO.getProd_id());
-		jsonObj.addProperty("prod_name", prodVO.getProd_name());
-		jsonObj.addProperty("prod_lgu", prodVO.getProd_lgu());
-		jsonObj.addProperty("prod_buyer", prodVO.getProd_buyer());
-		jsonObj.addProperty("prod_cost", prodVO.getProd_cost());
-		jsonObj.addProperty("prod_price", prodVO.getProd_price());
-		jsonObj.addProperty("prod_sale", prodVO.getProd_sale());
-		jsonObj.addProperty("prod_outline", prodVO.getProd_outline());
-		jsonObj.addProperty("prod_detail", prodVO.getProd_detail());
-		jsonObj.addProperty("prod_img", prodVO.getProd_img());
-		jsonObj.addProperty("prod_totalstock", prodVO.getProd_totalstock());
-		jsonObj.addProperty("prod_insdate", prodVO.getProd_insdate());
-		jsonObj.addProperty("prod_properstock", prodVO.getProd_properstock());
-		jsonObj.addProperty("prod_size", prodVO.getProd_size());
-		jsonObj.addProperty("prod_color", prodVO.getProd_color());
-		jsonObj.addProperty("prod_delivery", prodVO.getProd_delivery());
-		jsonObj.addProperty("prod_unit", prodVO.getProd_unit());
-		jsonObj.addProperty("prod_qtyin", prodVO.getProd_qtyin());
-		jsonObj.addProperty("prod_qtysale", prodVO.getProd_qtysale());
-		jsonObj.addProperty("prod_mileage", prodVO.getProd_mileage());
-		
-		try {
-			response.getWriter().write(jsonObj.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (prodVO == null) {
+			try {
+				response.getWriter().write("{}");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return;
+			
+		} else {
+			JsonObject jsonObj = new JsonObject();
+			
+			jsonObj.addProperty("prod_id", prodVO.getProd_id());
+			jsonObj.addProperty("prod_name", prodVO.getProd_name());
+			jsonObj.addProperty("prod_lgu", prodVO.getProd_lgu());
+			jsonObj.addProperty("prod_buyer", prodVO.getProd_buyer());
+			jsonObj.addProperty("prod_cost", prodVO.getProd_cost());
+			jsonObj.addProperty("prod_price", prodVO.getProd_price());
+			jsonObj.addProperty("prod_sale", prodVO.getProd_sale());
+			jsonObj.addProperty("prod_outline", prodVO.getProd_outline());
+			jsonObj.addProperty("prod_detail", prodVO.getProd_detail());
+			jsonObj.addProperty("prod_img", prodVO.getProd_img());
+			jsonObj.addProperty("prod_totalstock", prodVO.getProd_totalstock());
+			jsonObj.addProperty("prod_insdate", prodVO.getProd_insdate());
+			jsonObj.addProperty("prod_properstock", prodVO.getProd_properstock());
+			jsonObj.addProperty("prod_size", prodVO.getProd_size());
+			jsonObj.addProperty("prod_color", prodVO.getProd_color());
+			jsonObj.addProperty("prod_delivery", prodVO.getProd_delivery());
+			jsonObj.addProperty("prod_unit", prodVO.getProd_unit());
+			jsonObj.addProperty("prod_qtyin", prodVO.getProd_qtyin());
+			jsonObj.addProperty("prod_qtysale", prodVO.getProd_qtysale());
+			jsonObj.addProperty("prod_mileage", prodVO.getProd_mileage());
+			
+			try {
+				response.getWriter().write(jsonObj.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 	}
