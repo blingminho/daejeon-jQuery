@@ -21,11 +21,11 @@ public class MemberVo {
 	public void setMem_pass(String mem_pass) {
 		this.mem_pass = mem_pass;
 	}
-	public String getMem_nama() {
+	public String getMem_name() {
 		return mem_name;
 	}
-	public void setMem_nama(String mem_nama) {
-		this.mem_name = mem_nama;
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
 	}
 	public String getMem_mail() {
 		return mem_mail;
@@ -54,16 +54,16 @@ public class MemberVo {
 	@Override
 	public String toString() {
 		return "MemberVo [mem_id=" + mem_id + ", mem_pass=" + mem_pass
-				+ ", mem_nama=" + mem_name + ", mem_mail=" + mem_mail
+				+ ", mem_name=" + mem_name + ", mem_mail=" + mem_mail
 				+ ", mem_hp=" + mem_hp + ", mem_add1=" + mem_add1
 				+ ", mem_add2=" + mem_add2 + "]";
 	}
-	public MemberVo(String mem_id, String mem_pass, String mem_nama,
+	public MemberVo(String mem_id, String mem_pass, String mem_name,
 			String mem_mail, String mem_hp, String mem_add1, String mem_add2) {
 		super();
 		this.mem_id = mem_id;
 		this.mem_pass = mem_pass;
-		this.mem_name = mem_nama;
+		this.mem_name = mem_name;
 		this.mem_mail = mem_mail;
 		this.mem_hp = mem_hp;
 		this.mem_add1 = mem_add1;

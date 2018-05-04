@@ -49,6 +49,7 @@
 	<sqlMap resource="kr/or/ddit/lprod/dao/lprod.xml"/>
 	<sqlMap resource="kr/or/ddit/prod/dao/prod.xml"/>
 	<sqlMap resource="kr/or/ddit/member/dao/member.xml"/>
+	<sqlMap resource="kr/or/ddit/board/dao/board.xml"/>
 
 </sqlMapConfig>
 

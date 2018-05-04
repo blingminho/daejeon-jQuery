@@ -27,7 +27,7 @@ public class IdSearch extends HttpServlet {
 		
 		//메서드호출
 		String res = service.idCheck(sid);
-		if (res == null) {
+		if (res != null) {
 			response.getWriter().write("{}");
 			return;
 		}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var showTable = function(cpage){
+			$.ajax({
+				url : "/projquery/boardServlet",
+				type : "post",
+				data : {"cpage":cpage},
+				dataType : "json",
+				success : function(data) {
+					var code = "";
+					$('#accordionlist').empty();
+					code += "<div class='panel-group' id='parent'>"
+					
+					$.each(data, function(i, jsonObj) {
+						code += "<div class='panel panel-default'>";
+						code += "	<h4 class='panel-title'>";
+						code += "	<button class='accordion' data-toggle='collapse' data-parent='#parent' href='#collapse" + jsonObj.seq + "'>" + jsonObj.subject + "</button>";
+						code += "	</h4>";
+						
+						if(i == 0)
+							code += "	<div id='collapse" + jsonObj.seq + "' class='panel-collapse collapse in'>";
+						else
+							code += "	<div id='collapse" + jsonObj.seq + "' class='panel-collapse collapse'>";
+						
+						code += "		<div class='panel-body'>";
+						code += "			<p style='width: 80%; float: left;'>작성자 : " + jsonObj.writer + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이메일 : " + jsonObj.mail + "</p>";
+						code += "			<p style='text-align: right;'>";
+						code += "				<button idx='" + jsonObj.seq + "' name='modify' class='action'>수정</button>";
+						code += "				<button idx='" + jsonObj.seq + "' name='delete' class='action'>삭제</button>";
+						code += "			</p>";
+						code += "			<h4><p>" + jsonObj.content + "</p></h4>";
+						code += "		</div>";
+						code += "	</div>";
+						code += "</div>";
+						
+					})
+
+					$('#accordionlist').html(code);
+					
+					/* 페이지네이션 */
+					//이전버튼
+					$('#pagegroup').empty();
+					pager = "";
+					pager += '<ul class="pager">';
+					pager += '<li><a href="#">Previous</a></li>';
+					pager += '</ul>';
+					$('#pagegroup').append(pager);
+					
+					//page번호
+					
+					pager = '<ul class="pagination pager">';
+					pager +=  '<li><a href="#">1</a></li>';
+					pager +=  '<li class="active"><a href="#">2</a></li>';
+					pager +=  '<li><a href="#">3</a></li>';
+					pager +=  '<li><a href="#">4</a></li>';
+					pager +=  '<li><a href="#">5</a></li>';
+					pager += '</ul>';
+					$('#pagegroup').append(pager);
+					
+					//다음버튼
+					pager = "";
+					pager += '<ul class="pager">';
+					pager += '<li><a href="#">Next</a></li>';
+					pager += '</ul>';
+					$('#pagegroup').append(pager);
+					
+					
+				},
+				error : function(status) {
+					alert("에러발생 : " + status)
+				}
+			})
+			
+			
+		}
+		
+		showTable(0);
+		
+		
+		
+	})
+
+</script>
+<style type="text/css">
+h2 {
+	margin: 30px;
+}
+#accordionList {
+	margin: 20px;
+}
+.accordion {
+	background-color: #eee;
+	color: #444;
+	cursor: pointer;
+	padding: 15px;
+	width: 100%;
+	border: 2px double lightgray;
+	text-align: left;
+	outline: none;
+	font-size: 15px;
+	transition: 0.4s;
+}
+.accordion:hover {
+	background-color: #58ACFA;
+}
+.accordion:after {
+	color: #777;
+	font-weight: bold;
+	float: right;
+	margin-left: 5px;
+}
+.panel-title {
+	margin: 1px;
+}
+.panel {
+	padding: 0px;
+	background-color: white;
+	/*     // max-height: 0;  */
+	/*     overflow: hidden; */
+	/*      transition: max-height 0.2s ease-out;  */
+	margin: 0px;
+}
+#btngroup2 {
+	text-align: right;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-right: 30px;
+}
+#pagegroup{
+ text-align : center;
+ margin-left : 35%; 
+ 
+}	
+#pagegroup button {
+		margin: 3px;
+		padding: 3px;
+		width: 50px;
+}
+.pager {
+	float: left;
+}
+.next, .previous {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.next:hover, .previous:hover, .active {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.form-group {
+	display: inline;
+	margin-left: 64%;
+}
+#stype {
+	width: 100px;
+	margin-left: 55%;
+}
+.rep {
+	height: auto; /* 30px; */
+	background: lightgray;
+	border: 1px silid gray;
+	margin-top: 2px;
+}
+</style>
+</head>
+<body>
+
+	<div id="accordionlist" class="container">
+		<h2>Accordion 게시판</h2>
+
+	</div>
+	<br>
+	<br>
+	<div id="pagegroup">
+	
+	</div>
+</body>
+</html>

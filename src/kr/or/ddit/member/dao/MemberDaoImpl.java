@@ -52,7 +52,7 @@ public class MemberDaoImpl implements MemberDaoInf {
 	}
 	@Override
 	public String insertMember(MemberVo vo) throws SQLException {
-		return (String)smc.queryForObject("member.insertMember", vo);
+		return (String)smc.insert("member.insertMember", vo);
 	}
 
 }
