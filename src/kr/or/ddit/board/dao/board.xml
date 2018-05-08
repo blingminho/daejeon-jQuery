@@ -11,4 +11,39 @@
 		ORDER BY SEQ DESC
 	</select>
 	
+	<!-- pagenation 처리 -->
+	<select id="listpage" parameterClass="map" resultClass="boardVO">
+		<![CDATA[
+		SELECT *
+		FROM (
+			SELECT ROWNUM as RN, A.*
+			FROM (
+				SELECT *
+				FROM BOARD1
+				ORDER BY SEQ DESC) A
+			WHERE ROWNUM <= #end#) B
+		WHERE B.RN >= #start#
+		]]>
+	</select>
+	
+	<!-- 글 갯수 구하기 -->
+	<select id="listCount" resultClass="int">
+		SELECT COUNT(*)
+		FROM BOARD1
+	</select>
+	
+	<!-- 글쓰기 -->
+	<insert id="insertBoard" parameterClass="boardVO">
+		INSERT INTO BOARD1
+		(SEQ, SUBJECT, WRITER, MAIL,
+		 PASSWORD, CONTENT, HIT, WIP, WDATE)
+		VALUES (BOARD_SEQ_NUM.NEXTVAL, #subject#, #writer#, #mail#,
+		 #password#, #content#, #hit#, #wip#, SYSDATE)
+		
+		<selectKey keyProperty="seq" resultClass="int">
+			SELECT BOARD_SEQ_NUM.CURRVAL
+			FROM DUAL
+		</selectKey>
+	</insert>
+	
 </sqlMap>

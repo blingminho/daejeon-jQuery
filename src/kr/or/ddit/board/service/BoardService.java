@@ -34,8 +34,39 @@ public class BoardService implements BoardServiceInf{
 
 	@Override
 	public List<BoardVO> selectAll(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		List<BoardVO> list = null;
+		
+		try {
+			list = dao.selectAll(map);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	@Override
+	public int listCount() {
+		int count = 0;
+		
+		try {
+			count = dao.listCount();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	@Override
+	public int insertBoard(BoardVO vo) {
+		int seq = 0;
+		
+		try {
+			seq = dao.insertBoard(vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return seq;
 	}
 
 }

@@ -8,6 +8,8 @@ public class BoardVO {
 	private String password;
 	private String content;
 	private Integer hit;
+	private String wip;
+	
 	public Integer getSeq() {
 		return seq;
 	}
@@ -49,6 +51,12 @@ public class BoardVO {
 	}
 	public void setHit(Integer hit) {
 		this.hit = hit;
+	}
+	public String getWip() {
+		return wip;
+	}
+	public void setWip(String wip) {
+		this.wip = wip;
 	}
 	
 	

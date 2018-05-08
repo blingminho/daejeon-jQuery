@@ -31,8 +31,17 @@ public class BoardDao implements BoardDaoInf{
 
 	@Override
 	public List<BoardVO> selectAll(Map<String, Object> map) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return smc.queryForList("board.listpage", map);
+	}
+
+	@Override
+	public int listCount() throws SQLException {
+		return (int) smc.queryForObject("board.listCount");
+	}
+
+	@Override
+	public int insertBoard(BoardVO vo) throws SQLException {
+		return (int) smc.insert("board.insertBoard", vo);
 	}
 
 }

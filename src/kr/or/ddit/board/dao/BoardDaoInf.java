@@ -14,4 +14,9 @@ public interface BoardDaoInf {
 	//페이지 별 데이터 가져오기
 	public List<BoardVO> selectAll(Map<String, Object> map) throws SQLException;
 	
+	//글 갯수 구하기
+	public int listCount() throws SQLException;
+	
+	//저장하기
+	public int insertBoard(BoardVO vo) throws SQLException;
 }

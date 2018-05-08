@@ -8,6 +8,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		var currentPage = 1;
+		
 		var showTable = function(cpage){
 			$.ajax({
 				url : "/projquery/boardServlet",
@@ -15,15 +17,19 @@
 				data : {"cpage":cpage},
 				dataType : "json",
 				success : function(data) {
+					var startPage = data.startPage;
+					var endPage = data.endPage;
+					var totalPage = data.totalPage;
+					
+					var jsonArray = data.list;
+					
 					var code = "";
 					$('#accordionlist').empty();
 					code += "<div class='panel-group' id='parent'>"
 					
-					$.each(data, function(i, jsonObj) {
+					$.each(jsonArray, function(i, jsonObj) {
 						code += "<div class='panel panel-default'>";
-						code += "	<h4 class='panel-title'>";
-						code += "	<button class='accordion' data-toggle='collapse' data-parent='#parent' href='#collapse" + jsonObj.seq + "'>" + jsonObj.subject + "</button>";
-						code += "	</h4>";
+						code += "	<button class='accordion' data-toggle='collapse' data-parent='#parent' href='#collapse" + jsonObj.seq + "'><h4 class='panel-title'>" + jsonObj.subject + "</h4></button>";
 						
 						if(i == 0)
 							code += "	<div id='collapse" + jsonObj.seq + "' class='panel-collapse collapse in'>";
@@ -46,31 +52,37 @@
 					$('#accordionlist').html(code);
 					
 					/* 페이지네이션 */
-					//이전버튼
 					$('#pagegroup').empty();
-					pager = "";
-					pager += '<ul class="pager">';
-					pager += '<li><a href="#">Previous</a></li>';
-					pager += '</ul>';
-					$('#pagegroup').append(pager);
+					//이전버튼
+					if(startPage > 1){
+						pager = "";
+						pager += '<ul class="pager">';
+						pager += '<li class="previous"><a href="#">Previous</a></li>';
+						pager += '</ul>';
+						$('#pagegroup').append(pager);
+					}
 					
 					//page번호
-					
 					pager = '<ul class="pagination pager">';
-					pager +=  '<li><a href="#">1</a></li>';
-					pager +=  '<li class="active"><a href="#">2</a></li>';
-					pager +=  '<li><a href="#">3</a></li>';
-					pager +=  '<li><a href="#">4</a></li>';
-					pager +=  '<li><a href="#">5</a></li>';
+					for(i = startPage; i <= endPage; i++) {
+						if (currentPage == i) {
+							pager += '<li class="active"><a href="#" class="paging">' + i + '</a></li>';
+						} else {
+							pager += '<li><a href="#" class="paging">' + i + '</a></li>';
+						}
+					}
+					
 					pager += '</ul>';
 					$('#pagegroup').append(pager);
 					
 					//다음버튼
-					pager = "";
-					pager += '<ul class="pager">';
-					pager += '<li><a href="#">Next</a></li>';
-					pager += '</ul>';
-					$('#pagegroup').append(pager);
+					if (endPage < totalPage) {
+						pager = "";
+						pager += '<ul class="pager">';
+						pager += '<li class="next"><a href="#">Next</a></li>';
+						pager += '</ul>';
+						$('#pagegroup').append(pager);
+					}
 					
 					
 				},
@@ -78,12 +90,51 @@
 					alert("에러발생 : " + status)
 				}
 			})
+		}
+		
+		showTable(currentPage);
+		
+		var writeServer = function(){
+			$.ajax({
+				url : "/projquery/BoardWrite",
+				type : "post",
+				data : $('#writeModal').serialize(),
+				dataType : "json",
+				success : function(data) {
+					
+				},
+				error : function(xhr) {
+					alert("상태 : " + xhr.status);
+				}
+			})
+			
 			
 			
 		}
 		
-		showTable(0);
+		//페이지버튼클릭시
+		$('#pagegroup').on('click', '.paging', function(){
+			currentPage = parseInt($(this).text());
+			showTable(currentPage);
+		})
 		
+		//이전버튼 클릭시
+		$('#pagegroup').on('click', '.previous a', function(){
+			currentPage = parseInt($('.paging:first').text()) - 1;
+			showTable(currentPage);
+		})
+		
+		//다음버튼 클릭시		
+		$('#pagegroup').on('click', '.next a', function(){
+			currentPage = parseInt($('.paging:last').text()) + 1;
+			showTable(currentPage);
+		})
+		
+		
+		//글쓰기모달창에서 전송버튼 클릭
+		$('#writeModal #w_submit').on('click', function(){
+			writeServer();//함수 호출
+		})
 		
 		
 	})
@@ -172,6 +223,11 @@ h2 {
 </style>
 </head>
 <body>
+	
+	<div id="btngroup2">
+		<button name="write" class="action" id="write" data-toggle="modal" data-target="#writeModal">글쓰기</button>
+	</div>
+	
 
 	<div id="accordionlist" class="container">
 		<h2>Accordion 게시판</h2>
@@ -180,7 +236,36 @@ h2 {
 	<br>
 	<br>
 	<div id="pagegroup">
-	
 	</div>
+	
+	
+	<!-- 글쓰기 Modal -->
+	<div class="modal fade" id="writeModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">글쓰기</h4>
+				</div>
+				<div class="modal-body">
+					<form name="writeForm" id="writeForm">
+						이름 : <input type="text" name="writer" id="writer"><br>
+						제목 : <input type="text" name="subject" id="subject"><br>
+						메일 : <input type="text" name="mail" id="mail"><br>
+						비밀번호 : <input type="password" name="password" id="password"><br>
+						내용 : <br>
+						<textarea rows="10" cols="50" id="content" name="content"></textarea><br>
+					</form>
+					<button id="w_submit" type="button" class="action" name="w_submit">전송</button>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>
