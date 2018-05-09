@@ -98,9 +98,17 @@
 			$.ajax({
 				url : "/projquery/BoardWrite",
 				type : "post",
-				data : $('#writeModal').serialize(),
+				data : $('#writeForm').serialize(),
 				dataType : "json",
 				success : function(data) {
+					var flag = data.flag;
+					if(flag == 'OK'){
+						alert('저장성공');
+						
+						showTable(1);
+					} else
+						alert('저장실패');	
+						
 					
 				},
 				error : function(xhr) {
@@ -134,6 +142,12 @@
 		//글쓰기모달창에서 전송버튼 클릭
 		$('#writeModal #w_submit').on('click', function(){
 			writeServer();//함수 호출
+		})
+		
+		//글쓰기 모달창 닫기 이벤트
+		var fx = $('#writeModal').on('hide.bs.modal', function(){
+			$('#writerModal input').val('');
+			$('#writerModal textarea').val('');
 		})
 		
 		
@@ -250,12 +264,12 @@ h2 {
 				</div>
 				<div class="modal-body">
 					<form name="writeForm" id="writeForm">
-						이름 : <input type="text" name="writer" id="writer"><br>
-						제목 : <input type="text" name="subject" id="subject"><br>
-						메일 : <input type="text" name="mail" id="mail"><br>
-						비밀번호 : <input type="password" name="password" id="password"><br>
+						이름 : <input type="text" name="writer" id="w_writer"><br>
+						제목 : <input type="text" name="subject" id="w_subject"><br>
+						메일 : <input type="text" name="mail" id="w_mail"><br>
+						비밀번호 : <input type="password" name="password" id="w_password"><br>
 						내용 : <br>
-						<textarea rows="10" cols="50" id="content" name="content"></textarea><br>
+						<textarea rows="10" cols="50" id="w_content" name="content"></textarea><br>
 					</form>
 					<button id="w_submit" type="button" class="action" name="w_submit">전송</button>
 					

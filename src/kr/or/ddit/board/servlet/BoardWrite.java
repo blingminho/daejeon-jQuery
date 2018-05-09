@@ -1,12 +1,16 @@
 package kr.or.ddit.board.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import com.google.gson.JsonObject;
 
@@ -28,11 +32,17 @@ public class BoardWrite extends HttpServlet {
 		//요청시 입력한 값을 전달 받는다
 		BoardVO vo = new BoardVO();
 		
-		vo.setWriter(request.getParameter("writer"));
-		vo.setSubject(request.getParameter("subject"));
-		vo.setPassword(request.getParameter("password"));
-		vo.setContent(request.getParameter("content"));
-		vo.setMail(request.getParameter("mail"));
+//		vo.setWriter(request.getParameter("writer"));
+//		vo.setSubject(request.getParameter("subject"));
+//		vo.setPassword(request.getParameter("password"));
+//		vo.setContent(request.getParameter("content"));
+//		vo.setMail(request.getParameter("mail"));
+		
+		try {
+			BeanUtils.populate(vo, request.getParameterMap());
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
 		vo.setHit(0);
 		vo.setWip(request.getRemoteAddr());
 		
@@ -44,12 +54,15 @@ public class BoardWrite extends HttpServlet {
 		
 		//json데이터 생성한다
 		JsonObject jsonObj = new JsonObject();
-		jsonObj.addProperty("seq", seq);
+		if (seq > 0)
+			jsonObj.addProperty("flag", "OK");
+		else
+			jsonObj.addProperty("flag", "NO");
 		
 		//출력한다
-		
-		
-		
+		PrintWriter writer = response.getWriter();
+		writer.write(jsonObj.toString());
+		writer.close();
 	}
 
 }
